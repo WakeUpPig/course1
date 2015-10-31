@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta content="width=device-
+width, initial-scale=1.0, maximum-scale=1.0, uc-fitscreen=yes, user-scalable=0;" name="viewport">
+</head>
+<body>
+<style>
+    *{
+        margin: 0; padding: 0;
+    }
+    html,body,.wrap,section{
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+    section{
+        display: none;
+    }
+    .aa{
+        width: 100px;;
+        height: 100px;
+        background: red;
+        opacity: 1;
+        /*-webkit-transform: rotate(45deg);*/
+        /*-webkit-transform: skew(45deg);*/
+        /*-webkit-transform: scale(0.5,0.5);*/
+        /*-webkit-transform: translate3d(100px,100px,0) rotate(45deg);*/
+        /*盒子阴影*/
+        text-shadow: 2px 2px gray;
+        box-shadow:-2px 2px 3px 1px gray ;
+        /*background: -webkit-linear-gradient(top,blue,red);*/
+        /*border-radius:50%*/
+        /*渐进增强  平稳退化*/
+        /*-webkit-transition: 1s all;*/
+        /*-webkit-animation:allmove 3s ease-in 2s infinite ;*/
+
+    }
+    .aa:hover{
+        background: blue;
+        opacity: 0;
+    }
+    .show{
+        display: block;
+    }
+
+    @-webkit-keyframes allmove {
+        0%{
+            -webkit-transform: rotate(0deg);
+        }
+        100%{
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    .wrap section:nth-child(1){
+          background: red;
+      }.wrap section:nth-child(2){
+          background: yellow;
+      }.wrap section:nth-child(3){
+          background: blue;
+      }.wrap section:nth-child(4){
+          background: gray;
+      }
+</style>
+
+<div class="wrap">
+    <section class="show"><h2>个人介绍</h2>
+    <p class="oP" style="font-size: 40px">0</p>
+    </section>
+    <section class="1 2 4 t "><h2>工作经验</h2></section>
+    <section class="1 2 4 t "><h2>技能</h2></section>
+    <section class="1 2 4 t "><h2>求职意向</h2></section>
+</div>
+<script>
+    /*1 dom 2dom */
+    /*
+    * touchstart touchmove touchend click mouseenter mouseleave 
+    *
+    * */
+    var pos = {
+        y:0,
+        index:0
+    }
+    /*
+    * document.getElementById
+    * document.getElementsByTagName
+    * document.getElementsByClassName
+    * document.querySelector()
+    * document.querySelectorAll()
+    *
+    * */
+    /*zepto .js
+    *
+    * */
+
+    var oAll = document.querySelectorAll('.wrap section');
+    console.log(oAll);
+    document.addEventListener('touchstart', function (e) {
+       pos.y=e.changedTouches[0].pageY;
+        console.log(pos.y)
+    })
+    document.addEventListener('touchend', function (e) {
+        var temp =e.changedTouches[0].pageY;
+        if(temp-pos.y>0){
+            if(pos.index==4){
+                pos.index=0;
+            }
+            pos.index++;
+            console.log('down');
+        }else{
+            console.log('up');
+            if(pos.index==0){
+                pos.index=4;
+            }
+            pos.index--;
+        };
+
+        //"show float    add"
+        function addClass(ele,className) {
+            var pattern = new RegExp('(^| +)'+className+'( +|$)');
+            if(!pattern.test(ele.className)){
+                ele.className=ele.className+' '+className;
+            }
+
+        }
+        function removeClass(ele,className) {
+            var pattern = new RegExp('(^| +)'+className+'( +|$)');
+            if(pattern.test(ele.className)){
+                ele.className = ele.className.replace(className,'');
+            }
+        }
+
+        [].slice.call(oAll,0).forEach(function (i) {
+            removeClass(i,'show');
+        })
+        addClass(oAll[pos.index],'show');
+
+    });
+    //setInterval();
+
+//    var oP = document.querySelector('.oP');
+//    var val = oP.innerHTML;
+//
+//    ~function bb(){
+//        setTimeout(function () {
+//            var val = oP.innerHTML;
+//            oP.innerHTML=parseInt(val)+1;
+//            bb();
+//        },1000)
+//    }()
+
+</script>
+</body>
+</html>

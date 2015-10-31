@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<!--jsonp   ajax-->
+<body>
+
+<button id="oBtn">按钮</button>
+<ul>
+
+</ul>
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+
+
+<script>
+    $('#oBtn').on('click', function () {
+        var that = $('ul');
+        $.ajax({
+            url:'/data',
+            type:'get',
+            success: function (data) {
+                console.log(data);
+                var temp = JSON.parse(data);
+                for(var i in temp){
+
+                    if(temp.hasOwnProperty(i)){
+                        that.get(0).innerHTML+='<li>'+temp[i]+'</li>'
+                    }
+                }
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

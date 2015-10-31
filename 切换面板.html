@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div,li,ul{
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 1px solid red;
+        }
+        #slide div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid gray;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="oUl">
+    <li>切换1</li>
+    <li>切换2</li>
+    <li>切换3</li>
+    <li>切换4</li>
+</ul>
+<div id="slide">
+    <div style="display: block">1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+<script>
+    var oUl = document.getElementById('oUl');
+    var oSlide = document.getElementById('slide');
+    var oDiv = oSlide.getElementsByTagName('div');
+    var oLis = oUl.getElementsByTagName('li');
+    //闭包
+/*
+    for(var i = 0; i<oLis.length;i++){
+        (function(i){
+                oLis[i].onclick= function () {
+                    for(var j = 0; j<oLis.length;j++){
+                        oDiv[j].style.display='none';
+                    }
+                    oDiv[i].style.display='block';
+                }
+
+        })(i)
+    }
+    */
+    /*
+    *
+    * 自定义函数
+    *
+    * */
+//    for(var i = 0; i<oLis.length;i++){
+//       oLis[i].index= i;
+//        oLis[i].onclick= function () {
+//            for(var j = 0; j<oLis.length;j++){
+//                oDiv[j].style.display='none';
+//            }
+//            oDiv[this.index].style.display='block';
+//        }
+//    }
+
+    for(var i = 0; i<oLis.length;i++){
+        //自执行函数
+            oLis[i].onclick= (function (i) {
+                return function(){
+                    for(var j = 0; j<oLis.length;j++){
+                        oDiv[j].style.display='none';
+                    }
+                    oDiv[i].style.display='block';
+                }
+            })(i)
+
+
+    }
+</script>
+</body>
+</html>

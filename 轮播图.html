@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    div {
+        position: relative;
+        width: 400px;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    ul {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2000px;
+        height: 200px;
+
+    }
+
+    ul li {
+        width: 400px;
+        height: 200px;
+        float: left;
+    }
+
+    ul li:nth-child(1) {
+        background: red;
+    }
+
+    ul li:nth-child(2) {
+        background: yellow;
+    }
+
+    ul li:nth-child(3) {
+        background: gray;
+    }
+
+    ul li:nth-child(4) {
+        background: green;
+    }
+
+    ul li:nth-child(5) {
+        background: red;
+    }
+</style>
+<div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script>
+    var index = 0;
+    setInterval(function () {
+
+        $('ul').animate({left: -(index * 400)}, 200, function () {
+
+            if (index == 4) {
+                index = 0;
+                $('ul').css('left', 0);
+            }
+            index++;
+        })
+
+    }, 1000);
+
+
+    var obj = {
+        index: 0,
+        addClass: function (ele) {
+
+        },
+        init: function (opt) {
+            opt.data;
+            this.addClass(opt.data)
+
+        }
+    }
+    var job ={
+        data:document.getElementById('ul');
+    }
+    obj.init(job);
+
+
+
+    function Obj(){
+
+    }
+    Obj.prototype.bindEvents=function(){
+        this.addClass();
+    }
+    Obj.prototype.addClass=function(){
+
+    }
+    var o = new Obj();
+    o.bindEvents();
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--标准浏览器下-->
+<!--浮动后 ul高度消失了-->
+<style>
+    ul {
+        border: 1px solid red;
+        /*float: left;*/
+         /*overflow: hidden;*/
+    }
+
+    li {
+        height: 20px;
+        float: left
+    }
+    .clearfix:after{
+        content: '';
+        display: block;
+        clear: both;
+        visibility: hidden;
+    }
+</style>
+<ul class="clearfix">
+    <li>hello JS</li>
+    <li>hello CSS</li>
+    <li>hello Angular</li>
+    <li>hello backbone</li>
+    <!--<div style="clear: both"></div>-->
+</ul>
+
+
+</body>
+</html>

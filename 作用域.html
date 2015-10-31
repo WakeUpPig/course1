@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--每一个函数都是作用域-->
+<script>
+    var i = 0;
+    sun();
+    function sun(){
+        alert(i)
+    }
+    (function a(){
+        var i =100;
+        return function (){
+            alert(i)
+        }
+    })()
+
+</script>
+</body>
+</html>
